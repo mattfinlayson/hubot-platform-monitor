@@ -1,0 +1,19 @@
+{
+	"name": "hubot-platform-monitor",
+	"version": "0.0.1",
+	"description": "Jive internal platform-monitor integration",
+	"keywords": [
+		"hubot"
+	],
+	"author": "Matthew Finlayson <matthew.finlayson@jivesoftware.com> (http://www.jivesoftware.com)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jivesoftware/jive-platform-monitor"
+	},
+	"license": "Apache 2.0",
+	"readmeFilename": "README.md",
+	"main": "index.coffee",
+	"dependencies": {
+		"hubot": ">= 2.4.0"
+	}
+}
