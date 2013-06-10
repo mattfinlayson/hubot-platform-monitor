@@ -82,6 +82,7 @@ module.exports = (robot) ->
           msg.send payload
     catch e
       msg.send "It looks like the platform monitor is down. Freak out."
+
 check_service = (cb) ->
   console.log "here"
   options = { host: 'soa-dev-app1.phx1.jivehosted.com', port: '63000', path: '/monitor' }
