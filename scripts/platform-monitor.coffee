@@ -37,46 +37,51 @@ module.exports = (robot) ->
   #  TIMEZONE
 
   robot.respond /platform\-monitor dev/i, (msg) ->
-    msg.http('http://soa-dev-app1.phx1.jivehosted.com:63000/monitor')
-      .get() (err, res, body) ->
-        status = JSON.parse(body)
-        monitorStates = status.monitorStates
-        console.log status
-        payload = ""
-        for state in status.monitorStates
-          name = ""
-          if state.name != null
-            name = state.name
-          pass = "DOWN"
-          if state.pass != null
-            if state.pass == true
-              pass = "* UP *"
-          message = "no message"
-          if state.message != null
-            message = state.message
-          payload += "SOA-DEV: #{name} - #{pass} #{message}\n"
-        msg.send payload
-
+    try
+      msg.http('http://soa-dev-app1.phx1.jivehosted.com:63000/monitor')
+        .get() (err, res, body) ->
+          status = JSON.parse(body)
+          monitorStates = status.monitorStates
+          console.log status
+          payload = ""
+          for state in status.monitorStates
+            name = ""
+            if state.name != null
+              name = state.name
+            pass = "DOWN"
+            if state.pass != null
+              if state.pass == true
+                pass = "* UP *"
+            message = "no message"
+            if state.message != null
+              message = state.message
+            payload += "SOA-DEV: #{name} - #{pass} #{message}\n"
+          msg.send payload
+    catch e
+      msg.send "It looks like the platform monitor is down. Freak out."
   robot.respond /platform\-monitor test/i, (msg) ->
-    msg.http('http://soa-test-app1.phx1.jivehosted.com:63000/monitor')
-      .get() (err, res, body) ->
-        status = JSON.parse(body)
-        monitorStates = status.monitorStates
-        console.log status
-        payload = ""
-        for state in status.monitorStates
-          name = ""
-          if state.name != null
-            name = state.name
-          pass = "DOWN"
-          if state.pass != null
-            if state.pass == true
-              pass = "* UP *"
-          message = "no message"
-          if state.message != null
-            message = state.message
-          payload += "SOA-TEST: #{name} - #{pass} #{message}\n"
-        msg.send payload
+    try
+      msg.http('http://soa-test-app1.phx1.jivehosted.com:63000/monitor')
+        .get() (err, res, body) ->
+          status = JSON.parse(body)
+          monitorStates = status.monitorStates
+          console.log status
+          payload = ""
+          for state in status.monitorStates
+            name = ""
+            if state.name != null
+              name = state.name
+            pass = "DOWN"
+            if state.pass != null
+              if state.pass == true
+                pass = "* UP *"
+            message = "no message"
+            if state.message != null
+              message = state.message
+            payload += "SOA-TEST: #{name} - #{pass} #{message}\n"
+          msg.send payload
+    catch e
+      msg.send "It looks like the platform monitor is down. Freak out."
 check_service = (cb) ->
   console.log "here"
   options = { host: 'soa-dev-app1.phx1.jivehosted.com', port: '63000', path: '/monitor' }

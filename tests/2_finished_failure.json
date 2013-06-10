@@ -1,0 +1,10 @@
+{"name":"JobName",
+ "url":"JobUrl",
+ "build":{"number":1,
+	  "phase":"FINISHED",
+	  "status":"FAILURE",
+          "url":"job/project/5",
+          "full_url":"http://ci.jenkins.org/job/project/5",
+          "parameters":{"branch":"master"}
+	 }
+}
